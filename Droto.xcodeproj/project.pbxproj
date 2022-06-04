@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		93F1ADF2284B6A5200A6621D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1ADF1284B6A5200A6621D /* AppDelegate.swift */; };
+		93F1ADF4284B6A5200A6621D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1ADF3284B6A5200A6621D /* SceneDelegate.swift */; };
+		93F1ADF6284B6A5200A6621D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1ADF5284B6A5200A6621D /* ViewController.swift */; };
+		93F1ADF9284B6A5200A6621D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F1ADF7284B6A5200A6621D /* Main.storyboard */; };
+		93F1ADFB284B6A5300A6621D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93F1ADFA284B6A5300A6621D /* Assets.xcassets */; };
+		93F1ADFE284B6A5300A6621D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93F1ADFC284B6A5300A6621D /* LaunchScreen.storyboard */; };
+		93F1AE09284B6A5300A6621D /* DrotoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1AE08284B6A5300A6621D /* DrotoTests.swift */; };
+		93F1AE13284B6A5300A6621D /* DrotoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1AE12284B6A5300A6621D /* DrotoUITests.swift */; };
+		93F1AE15284B6A5300A6621D /* DrotoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1AE14284B6A5300A6621D /* DrotoUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		93F1AE05284B6A5300A6621D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93F1ADE6284B6A5200A6621D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 93F1ADED284B6A5200A6621D;
+			remoteInfo = Droto;
+		};
+		93F1AE0F284B6A5300A6621D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93F1ADE6284B6A5200A6621D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 93F1ADED284B6A5200A6621D;
+			remoteInfo = Droto;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		93F1ADEE284B6A5200A6621D /* Droto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Droto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F1ADF1284B6A5200A6621D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		93F1ADF3284B6A5200A6621D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		93F1ADF5284B6A5200A6621D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		93F1ADF8284B6A5200A6621D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		93F1ADFA284B6A5300A6621D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		93F1ADFD284B6A5300A6621D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		93F1ADFF284B6A5300A6621D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93F1AE04284B6A5300A6621D /* DrotoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrotoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F1AE08284B6A5300A6621D /* DrotoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrotoTests.swift; sourceTree = "<group>"; };
+		93F1AE0E284B6A5300A6621D /* DrotoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrotoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F1AE12284B6A5300A6621D /* DrotoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrotoUITests.swift; sourceTree = "<group>"; };
+		93F1AE14284B6A5300A6621D /* DrotoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrotoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		93F1ADEB284B6A5200A6621D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F1AE01284B6A5300A6621D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F1AE0B284B6A5300A6621D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		93F1ADE5284B6A5200A6621D = {
+			isa = PBXGroup;
+			children = (
+				93F1ADF0284B6A5200A6621D /* Droto */,
+				93F1AE07284B6A5300A6621D /* DrotoTests */,
+				93F1AE11284B6A5300A6621D /* DrotoUITests */,
+				93F1ADEF284B6A5200A6621D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		93F1ADEF284B6A5200A6621D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93F1ADEE284B6A5200A6621D /* Droto.app */,
+				93F1AE04284B6A5300A6621D /* DrotoTests.xctest */,
+				93F1AE0E284B6A5300A6621D /* DrotoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		93F1ADF0284B6A5200A6621D /* Droto */ = {
+			isa = PBXGroup;
+			children = (
+				93F1ADF1284B6A5200A6621D /* AppDelegate.swift */,
+				93F1ADF3284B6A5200A6621D /* SceneDelegate.swift */,
+				93F1ADF5284B6A5200A6621D /* ViewController.swift */,
+				93F1ADF7284B6A5200A6621D /* Main.storyboard */,
+				93F1ADFA284B6A5300A6621D /* Assets.xcassets */,
+				93F1ADFC284B6A5300A6621D /* LaunchScreen.storyboard */,
+				93F1ADFF284B6A5300A6621D /* Info.plist */,
+			);
+			path = Droto;
+			sourceTree = "<group>";
+		};
+		93F1AE07284B6A5300A6621D /* DrotoTests */ = {
+			isa = PBXGroup;
+			children = (
+				93F1AE08284B6A5300A6621D /* DrotoTests.swift */,
+			);
+			path = DrotoTests;
+			sourceTree = "<group>";
+		};
+		93F1AE11284B6A5300A6621D /* DrotoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				93F1AE12284B6A5300A6621D /* DrotoUITests.swift */,
+				93F1AE14284B6A5300A6621D /* DrotoUITestsLaunchTests.swift */,
+			);
+			path = DrotoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		93F1ADED284B6A5200A6621D /* Droto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93F1AE18284B6A5300A6621D /* Build configuration list for PBXNativeTarget "Droto" */;
+			buildPhases = (
+				93F1ADEA284B6A5200A6621D /* Sources */,
+				93F1ADEB284B6A5200A6621D /* Frameworks */,
+				93F1ADEC284B6A5200A6621D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Droto;
+			productName = Droto;
+			productReference = 93F1ADEE284B6A5200A6621D /* Droto.app */;
+			productType = "com.apple.product-type.application";
+		};
+		93F1AE03284B6A5300A6621D /* DrotoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93F1AE1B284B6A5300A6621D /* Build configuration list for PBXNativeTarget "DrotoTests" */;
+			buildPhases = (
+				93F1AE00284B6A5300A6621D /* Sources */,
+				93F1AE01284B6A5300A6621D /* Frameworks */,
+				93F1AE02284B6A5300A6621D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				93F1AE06284B6A5300A6621D /* PBXTargetDependency */,
+			);
+			name = DrotoTests;
+			productName = DrotoTests;
+			productReference = 93F1AE04284B6A5300A6621D /* DrotoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		93F1AE0D284B6A5300A6621D /* DrotoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93F1AE1E284B6A5300A6621D /* Build configuration list for PBXNativeTarget "DrotoUITests" */;
+			buildPhases = (
+				93F1AE0A284B6A5300A6621D /* Sources */,
+				93F1AE0B284B6A5300A6621D /* Frameworks */,
+				93F1AE0C284B6A5300A6621D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				93F1AE10284B6A5300A6621D /* PBXTargetDependency */,
+			);
+			name = DrotoUITests;
+			productName = DrotoUITests;
+			productReference = 93F1AE0E284B6A5300A6621D /* DrotoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		93F1ADE6284B6A5200A6621D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					93F1ADED284B6A5200A6621D = {
+						CreatedOnToolsVersion = 13.4;
+					};
+					93F1AE03284B6A5300A6621D = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = 93F1ADED284B6A5200A6621D;
+					};
+					93F1AE0D284B6A5300A6621D = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = 93F1ADED284B6A5200A6621D;
+					};
+				};
+			};
+			buildConfigurationList = 93F1ADE9284B6A5200A6621D /* Build configuration list for PBXProject "Droto" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 93F1ADE5284B6A5200A6621D;
+			productRefGroup = 93F1ADEF284B6A5200A6621D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				93F1ADED284B6A5200A6621D /* Droto */,
+				93F1AE03284B6A5300A6621D /* DrotoTests */,
+				93F1AE0D284B6A5300A6621D /* DrotoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		93F1ADEC284B6A5200A6621D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F1ADFE284B6A5300A6621D /* LaunchScreen.storyboard in Resources */,
+				93F1ADFB284B6A5300A6621D /* Assets.xcassets in Resources */,
+				93F1ADF9284B6A5200A6621D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F1AE02284B6A5300A6621D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F1AE0C284B6A5300A6621D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		93F1ADEA284B6A5200A6621D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F1ADF6284B6A5200A6621D /* ViewController.swift in Sources */,
+				93F1ADF2284B6A5200A6621D /* AppDelegate.swift in Sources */,
+				93F1ADF4284B6A5200A6621D /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F1AE00284B6A5300A6621D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F1AE09284B6A5300A6621D /* DrotoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F1AE0A284B6A5300A6621D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93F1AE13284B6A5300A6621D /* DrotoUITests.swift in Sources */,
+				93F1AE15284B6A5300A6621D /* DrotoUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		93F1AE06284B6A5300A6621D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 93F1ADED284B6A5200A6621D /* Droto */;
+			targetProxy = 93F1AE05284B6A5300A6621D /* PBXContainerItemProxy */;
+		};
+		93F1AE10284B6A5300A6621D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 93F1ADED284B6A5200A6621D /* Droto */;
+			targetProxy = 93F1AE0F284B6A5300A6621D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		93F1ADF7284B6A5200A6621D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93F1ADF8284B6A5200A6621D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		93F1ADFC284B6A5300A6621D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93F1ADFD284B6A5300A6621D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		93F1AE16284B6A5300A6621D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		93F1AE17284B6A5300A6621D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		93F1AE19284B6A5300A6621D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Droto/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kylejs.Droto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		93F1AE1A284B6A5300A6621D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Droto/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kylejs.Droto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		93F1AE1C284B6A5300A6621D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kylejs.DrotoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Droto.app/Droto";
+			};
+			name = Debug;
+		};
+		93F1AE1D284B6A5300A6621D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kylejs.DrotoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Droto.app/Droto";
+			};
+			name = Release;
+		};
+		93F1AE1F284B6A5300A6621D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kylejs.DrotoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Droto;
+			};
+			name = Debug;
+		};
+		93F1AE20284B6A5300A6621D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.kylejs.DrotoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Droto;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		93F1ADE9284B6A5200A6621D /* Build configuration list for PBXProject "Droto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F1AE16284B6A5300A6621D /* Debug */,
+				93F1AE17284B6A5300A6621D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93F1AE18284B6A5300A6621D /* Build configuration list for PBXNativeTarget "Droto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F1AE19284B6A5300A6621D /* Debug */,
+				93F1AE1A284B6A5300A6621D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93F1AE1B284B6A5300A6621D /* Build configuration list for PBXNativeTarget "DrotoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F1AE1C284B6A5300A6621D /* Debug */,
+				93F1AE1D284B6A5300A6621D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93F1AE1E284B6A5300A6621D /* Build configuration list for PBXNativeTarget "DrotoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F1AE1F284B6A5300A6621D /* Debug */,
+				93F1AE20284B6A5300A6621D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 93F1ADE6284B6A5200A6621D /* Project object */;
+}
