@@ -1,0 +1,4 @@
+line_length: 110
+force_try:
+  severity: warning 
+
