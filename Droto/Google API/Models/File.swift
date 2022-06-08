@@ -12,4 +12,6 @@ struct File: Decodable {
     let name: String
     let mimeType: GoogleMimeType
     let thumbnailLink: URL?
+    let version: String
+    let md5Checksum: String?
 }

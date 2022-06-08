@@ -16,7 +16,7 @@ struct ListFoldersAndImagesEndpoint: Endpoint {
         comps.queryItems = [
             URLQueryItem(name: "q", value: "'\(folderId)' in parents and (mimeType = '\(GoogleMimeType.folder.rawValue)' or mimeType = '\(GoogleMimeType.jpeg.rawValue)' or mimeType = '\(GoogleMimeType.jpeg.rawValue)')"),
             URLQueryItem(name: "orderBy", value: "folder,name"),
-            URLQueryItem(name: "fields", value: "files/name,files/id,files/mimeType,files/thumbnailLink")
+            URLQueryItem(name: "fields", value: "files/name,files/id,files/mimeType,files/thumbnailLink,files/version,files/md5Checksum")
         ]
         return comps.url!
     }

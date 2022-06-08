@@ -39,7 +39,15 @@ struct GoogleDriveClient {
         case .root:
             switch await getAbout() {
             case let .success(about):
-                return await getContentsOfFolder(folder: .file(File(id: about.rootFolderId, name: "Drive", mimeType: .folder, thumbnailLink: nil)))
+                let file = File(
+                    id: about.rootFolderId,
+                    name: "Drive",
+                    mimeType: .folder,
+                    thumbnailLink: nil,
+                    version: "0",
+                    md5Checksum: "0"
+                )
+                return await getContentsOfFolder(folder: .file(file))
             case let .failure(error):
                 return .failure(error)
             }

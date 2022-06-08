@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if authCoordinator.appIsAuthorised() {
                 let credentials = KeychainManager().getGoogleAuthCredentials()!
                 let client = GoogleDriveClient(googleCredentials: credentials)
-                return DriveFolderTableViewController(driveClient: client, syncManager: ImageSyncManager(driveClient: client))
+                return ListFilesViewController(driveClient: client, syncManager: SyncManager(driveClient: client))
             } else {
                 return AuthViewController(authCoordinator: authCoordinator)
             }
@@ -39,7 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func authenticated() {
         let credentials = KeychainManager().getGoogleAuthCredentials()!
         let client = GoogleDriveClient(googleCredentials: credentials)
-        let vc = DriveFolderTableViewController(driveClient: client, syncManager: ImageSyncManager(driveClient: client))
+        let vc = ListFilesViewController(driveClient: client, syncManager: SyncManager(driveClient: client))
         window!.rootViewController = UINavigationController(rootViewController: vc)
         
         UIView.transition(with: window!, duration: 0.3, options: .transitionCrossDissolve, animations: {})

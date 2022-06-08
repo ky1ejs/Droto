@@ -1,5 +1,5 @@
 //
-//  DriveFolderTableViewController.swift
+//  ListFilesViewController.swift
 //  Droto
 //
 //  Created by Kyle Satti on 04/06/2022.
@@ -9,13 +9,13 @@ import UIKit
 import Photos
 
 @MainActor
-class DriveFolderTableViewController: UITableViewController {
+class ListFilesViewController: UITableViewController {
     private let driveClient: GoogleDriveClient
-    private let syncManager: ImageSyncManager
+    private let syncManager: SyncManager
     private var files = [File]()
     private var folder: Folder
     
-    init(driveClient: GoogleDriveClient, syncManager: ImageSyncManager, folder: Folder = .root) {
+    init(driveClient: GoogleDriveClient, syncManager: SyncManager, folder: Folder = .root) {
         self.driveClient = driveClient
         self.syncManager = syncManager
         self.folder = folder
@@ -99,7 +99,7 @@ class DriveFolderTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationController?
-            .pushViewController(DriveFolderTableViewController(
+            .pushViewController(ListFilesViewController(
                 driveClient: driveClient,
                 syncManager: syncManager,
                 folder: .file(files[indexPath.row])
