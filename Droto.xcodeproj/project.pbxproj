@@ -275,15 +275,15 @@
 		93F1ADF0284B6A5200A6621D /* Droto */ = {
 			isa = PBXGroup;
 			children = (
-				93075F8A287D6D1700F587C9 /* Model */,
-				93987E16284B762900A7A602 /* ListFilesViewController.swift */,
 				93987E1C284B970100A7A602 /* KeychainManager.swift */,
+				93987E16284B762900A7A602 /* ListFilesViewController.swift */,
 				93BAAECF284CAB4F008659B4 /* SyncManager.swift */,
 				93BAAEC6284BE43F008659B4 /* ThumbnailCell.swift */,
 				93BAAECB284BE7D8008659B4 /* UITableView+Utils.swift */,
 				93BAAEAE284BE038008659B4 /* App */,
 				93E17504284D4414001A4B1A /* Auth */,
 				93BAAEAF284BE05A008659B4 /* Google API */,
+				93075F8A287D6D1700F587C9 /* Model */,
 				93BAAEB6284BE107008659B4 /* Networking */,
 				93BAAEC3284BE319008659B4 /* Resources */,
 			);
