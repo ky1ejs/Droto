@@ -10,7 +10,7 @@ import UIKit
 class AuthCoordinator {
     private let authentications: [AuthProvider]
     
-    init(authentications: [AuthProvider] = [FirebaseAuth(), GoogleDriveAuth()]) {
+    init(authentications: [AuthProvider] = [SupabaseAuth(), GoogleDriveAuth()]) {
         self.authentications = authentications
     }
     

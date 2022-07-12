@@ -6,4 +6,5 @@ xcuserdata/
 *.xccheckout
 
 google-oauth.plist
-GoogleService-Info.plist
+supabase.plist
+
