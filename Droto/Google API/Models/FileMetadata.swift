@@ -13,5 +13,5 @@ struct FileMetadata: JsonResponseDecodable, Equatable {
     let mimeType: GoogleMimeType
     let thumbnailLink: URL?
     let version: String
-    let md5Checksum: String?
+    let md5Checksum: String
 }

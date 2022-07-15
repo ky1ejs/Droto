@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SyncedFile: Codable, Equatable {
+struct SyncedFile: Decodable, Equatable {
     let id: String
     let syncedFolderId: String
     let photosId: String

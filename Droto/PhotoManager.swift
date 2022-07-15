@@ -11,33 +11,46 @@ import Photos
 class PhotoManager {
     typealias PhotoKitLocalId = String
     
-    func add(photos: [DownloadedFile]) async throws {
+    func add(photos: [DownloadedFile]) async throws -> [PHCloudIdentifier : DownloadedFile] {
         try await authIfNeeded()
         
+        var localIdsAndFiles = [PhotoKitLocalId : DownloadedFile]()
         try await PHPhotoLibrary.shared().performChanges {
-            let creation = PHAssetCreationRequest.forAsset()
-            let options = PHAssetResourceCreationOptions()
-            options.shouldMoveFile = true
             for photo in photos {
-                creation.addResource(with: .photo, fileURL: photo.path, options: options)
+                let newPhoto = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: photo.path)
+                let photoKitId = newPhoto!.placeholderForCreatedAsset!.localIdentifier
+                localIdsAndFiles[photoKitId] = photo
             }
         }
+        
+        let cloudIds = PHPhotoLibrary.shared().cloudIdentifierMappings(forLocalIdentifiers: Array(localIdsAndFiles.keys))
+        var cloudIdsAndFiles = [PHCloudIdentifier : DownloadedFile]()
+        for entry in cloudIds {
+            switch entry.value {
+            case .success(let cloudId):
+                cloudIdsAndFiles[cloudId] = localIdsAndFiles[entry.key]
+            case .failure(let error):
+                throw error
+            }
+        }
+        
+        return cloudIdsAndFiles
     }
     
     func update(assetsAndNewPhotos: [(PHAsset, DownloadedFile)]) async throws {
         try await authIfNeeded()
         
-        for update in assetsAndNewPhotos {
-            update.0.requestContentEditingInput(with: nil) { input, _ in
-                PHPhotoLibrary.shared().performChanges({
+        try await PHPhotoLibrary.shared().performChanges({
+            for update in assetsAndNewPhotos {
+                update.0.requestContentEditingInput(with: nil) { input, _ in
+                    
                     let contentEditingOutput = PHContentEditingOutput(contentEditingInput: input!)
                     try! FileManager.default.moveItem(at: update.1.path, to: contentEditingOutput.renderedContentURL)
                     let request = PHAssetChangeRequest(for: update.0)
                     request.contentEditingOutput = contentEditingOutput
-                    
-                })
+                }
             }
-        }
+        })
     }
     
     func delete(photosIds: [PhotoKitLocalId]) async throws {
@@ -65,4 +78,5 @@ class PhotoManager {
 
 enum PhotoManagerError: Error {
     case unauthroized
+    case missingProxyObject
 }

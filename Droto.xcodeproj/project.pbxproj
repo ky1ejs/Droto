@@ -15,6 +15,7 @@
 		93075F99287F617E00F587C9 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93075F98287F617E00F587C9 /* PhotoManager.swift */; };
 		93075F9B2880AC5100F587C9 /* GetFileMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93075F9A2880AC5100F587C9 /* GetFileMetadata.swift */; };
 		93075F9E2880B34100F587C9 /* SupabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93075F9D2880B34100F587C9 /* SupabaseClient.swift */; };
+		93075FA02881A76800F587C9 /* NewSyncedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93075F9F2881A76800F587C9 /* NewSyncedFile.swift */; };
 		9385CC0A2854E6FF00343600 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 9385CC092854E6FF00343600 /* Supabase */; };
 		93987E13284B72F200A7A602 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 93987E12284B72F200A7A602 /* KeychainAccess */; };
 		93987E15284B757B00A7A602 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93987E14284B757B00A7A602 /* AuthViewController.swift */; };
@@ -82,6 +83,7 @@
 		93075F98287F617E00F587C9 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		93075F9A2880AC5100F587C9 /* GetFileMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFileMetadata.swift; sourceTree = "<group>"; };
 		93075F9D2880B34100F587C9 /* SupabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseClient.swift; sourceTree = "<group>"; };
+		93075F9F2881A76800F587C9 /* NewSyncedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSyncedFile.swift; sourceTree = "<group>"; };
 		93987E14284B757B00A7A602 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		93987E16284B762900A7A602 /* ListFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilesViewController.swift; sourceTree = "<group>"; };
 		93987E18284B806700A7A602 /* google-oauth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "google-oauth.plist"; sourceTree = "<group>"; };
@@ -174,10 +176,11 @@
 		93075F90287D758800F587C9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93075F8B287D6D3900F587C9 /* SyncedFile.swift */,
-				93075F8D287D6D4E00F587C9 /* SyncedFolder.swift */,
+				93075F9F2881A76800F587C9 /* NewSyncedFile.swift */,
 				93075F91287D759D00F587C9 /* NewSyncedFolder.swift */,
 				93075F93287D760200F587C9 /* SupabaseSyncedFolder.swift */,
+				93075F8B287D6D3900F587C9 /* SyncedFile.swift */,
+				93075F8D287D6D4E00F587C9 /* SyncedFolder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				93987E21284B9E0300A7A602 /* About.swift in Sources */,
 				93987E17284B762900A7A602 /* ListFilesViewController.swift in Sources */,
 				93987E15284B757B00A7A602 /* AuthViewController.swift in Sources */,
+				93075FA02881A76800F587C9 /* NewSyncedFile.swift in Sources */,
 				93987E1B284B8E3500A7A602 /* GoogleOauth.swift in Sources */,
 				93BAAEBE284BE1EB008659B4 /* AboutEndpoint.swift in Sources */,
 				93E1750A284D44D1001A4B1A /* AuthProvider.swift in Sources */,

@@ -63,7 +63,7 @@ struct GoogleDriveClient {
         
         switch (metadataResult, contentResult) {
         case let (.success(file), .success(data)):
-            return writeFileToCache(metadata: file, content: data)
+            return try writeFileToCache(metadata: file, content: data)
         default:
             throw GoogleDriveClientError.unknownError
         }
@@ -72,7 +72,7 @@ struct GoogleDriveClient {
     func downloadFile(file: FileMetadata) async throws -> DownloadedFile {
         switch await httpClient.call(endpoint: DownloadFileEndpoint(fileId: file.id)) {
         case .success(let data):
-            return writeFileToCache(metadata: file, content: data)
+            return try writeFileToCache(metadata: file, content: data)
         case .failure(let error):
             throw GoogleDriveClientError.endpointError(error)
         }
@@ -87,13 +87,17 @@ struct GoogleDriveClient {
         return downloads
     }
     
-    private func writeFileToCache(metadata: FileMetadata, content: Data) -> DownloadedFile {
+    private func writeFileToCache(metadata: FileMetadata, content: Data) throws -> DownloadedFile {
         let url = FileManager.default
             .urls(for: .cachesDirectory, in: .userDomainMask).first!
             .appendingPathComponent("Droto-TempDowloads")
-            .appendingPathComponent("\(metadata.id)_\(metadata.md5Checksum ?? "")")
+            .appendingPathComponent("\(metadata.id)_\(metadata.md5Checksum)")
         
-        FileManager.default.createFile(atPath: url.absoluteString, contents: content)
+        let fm = FileManager.default
+        if fm.fileExists(atPath: url.absoluteString) {
+            try fm.removeItem(at: url.absoluteURL)
+        }
+        fm.createFile(atPath: url.absoluteString, contents: content)
         
         return DownloadedFile(file: metadata, path: url)
     }

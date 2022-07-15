@@ -16,4 +16,30 @@ extension SupabaseClient {
         let clientId = dict["client_id"] as! String
         self.init(supabaseURL: host, supabaseKey: clientId)
     }
+    
+    func getSyncedFolder(with googleFolderDriveId: String) async throws -> SupabaseSyncedFolder {
+    return try await database
+        .from("synced_folders")
+        .upsert(
+            values: NewSyncedFolder(googleDriveId: googleFolderDriveId),
+            returning: .representation)
+        .execute()
+        .decoded()
+    }
+    
+    func getSyncedFiles(in syncedFolder: SupabaseSyncedFolder) async throws -> [SyncedFile] {
+        return try await database
+            .from("synced_files")
+            .select()
+            .match(query: ["syned_folder_id" : "= '\(syncedFolder.id)"])
+            .execute()
+            .decoded()
+    }
+    
+    func create(_ syncedFile: NewSyncedFile) async throws {
+        try await database
+            .from("synced_files")
+            .insert(values: syncedFile)
+            .execute()
+    }
 }
