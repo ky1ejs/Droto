@@ -28,7 +28,7 @@ class ThumbnailCell: UITableViewCell {
         return button
     }()
     
-    var file: File? {
+    var file: FileMetadata? {
         didSet {
             titleLable.text = file?.name
             thumbnailImage.kf.setImage(with: file?.thumbnailLink)
@@ -42,7 +42,7 @@ class ThumbnailCell: UITableViewCell {
         }
     }
     
-    var downloadButtonAction: ((File) -> ())?
+    var downloadButtonAction: ((FileMetadata) -> ())?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)

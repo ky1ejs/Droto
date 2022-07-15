@@ -7,6 +7,7 @@
 
 import UIKit
 import KeychainAccess
+import Supabase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -25,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if authCoordinator.appIsAuthorised() {
                 let credentials = KeychainManager().getGoogleAuthCredentials()!
                 let client = GoogleDriveClient(googleCredentials: credentials)
-                return ListFilesViewController(driveClient: client, syncManager: SyncManager(driveClient: client))
+                return ListFilesViewController(driveClient: client, syncManager: SyncManager(driveClient: client, supabaseClient: SupabaseClient()))
             } else {
                 return AuthViewController(authCoordinator: authCoordinator)
             }
@@ -39,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func authenticated() {
         let credentials = KeychainManager().getGoogleAuthCredentials()!
         let client = GoogleDriveClient(googleCredentials: credentials)
-        let vc = ListFilesViewController(driveClient: client, syncManager: SyncManager(driveClient: client))
+        let vc = ListFilesViewController(driveClient: client, syncManager: SyncManager(driveClient: client, supabaseClient: SupabaseClient()))
         window!.rootViewController = UINavigationController(rootViewController: vc)
         
         UIView.transition(with: window!, duration: 0.3, options: .transitionCrossDissolve, animations: {})

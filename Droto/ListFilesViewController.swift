@@ -12,10 +12,22 @@ import Photos
 class ListFilesViewController: UITableViewController {
     private let driveClient: GoogleDriveClient
     private let syncManager: SyncManager
-    private var files = [File]()
-    private var folder: Folder
+    private var files = [FileMetadata]()
+    private var folder: NavigationFolder
     
-    init(driveClient: GoogleDriveClient, syncManager: SyncManager, folder: Folder = .root) {
+    enum NavigationFolder {
+        case root
+        case file(FileMetadata)
+        
+        var queryFolder: Folder {
+            switch self {
+            case .root: return .root
+            case .file(let file): return .file(file.id)
+            }
+        }
+    }
+    
+    init(driveClient: GoogleDriveClient, syncManager: SyncManager, folder: NavigationFolder = .root) {
         self.driveClient = driveClient
         self.syncManager = syncManager
         self.folder = folder
@@ -42,7 +54,7 @@ class ListFilesViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         Task {
-            switch await driveClient.getContentsOfFolder(folder: folder) {
+            switch await driveClient.getContentsOfFolder(folder: folder.queryFolder) {
             case let .success(response):
                 self.files = response.files
                 self.tableView.reloadData()
@@ -69,24 +81,24 @@ class ListFilesViewController: UITableViewController {
             cell.file = file
             cell.state = syncManager.state(for: file)
             
-            cell.downloadButtonAction = { [weak self] file in
-                guard let `self` = self else { return }
-                
-                Task {
-                    switch self.syncManager.state(for: file) {
-                    case .downloaded:
-                        cell.state = .deleting
-                        let _ = await self.syncManager.delete(file)
-                    case .downloading, .deleting:
-                        assertionFailure()
-                    case .notDownloaded:
-                        cell.state = .downloading
-                        let _ = await self.syncManager.sync(file: file)
-                    }
-                    
-                    cell.state = self.syncManager.state(for: file)
-                }
-            }
+//            cell.downloadButtonAction = { [weak self] file in
+//                guard let `self` = self else { return }
+//
+//                Task {
+//                    switch self.syncManager.state(for: file) {
+//                    case .downloaded:
+//                        cell.state = .deleting
+//                        let _ = await self.syncManager.delete(file)
+//                    case .downloading, .deleting:
+//                        assertionFailure()
+//                    case .notDownloaded:
+//                        cell.state = .downloading
+//                        let _ = await self.syncManager.sync(file: file)
+//                    }
+//
+//                    cell.state = self.syncManager.state(for: file)
+//                }
+//            }
             
             return cell
         }

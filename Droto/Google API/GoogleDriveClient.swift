@@ -39,7 +39,7 @@ struct GoogleDriveClient {
         case .root:
             switch await getAbout() {
             case let .success(about):
-                let file = File(
+                let file = FileMetadata(
                     id: about.rootFolderId,
                     name: "Drive",
                     mimeType: .folder,
@@ -47,18 +47,60 @@ struct GoogleDriveClient {
                     version: "0",
                     md5Checksum: "0"
                 )
-                return await getContentsOfFolder(folder: .file(file))
+                return await getContentsOfFolder(folder: .file(file.id))
             case let .failure(error):
                 return .failure(error)
             }
 
-        case .file(let file):
-            return await httpClient.call(endpoint: ListFoldersAndImagesEndpoint(folderId: file.id))
+        case .file(let fileId):
+            return await httpClient.call(endpoint: ListFoldersAndImagesEndpoint(folderId: fileId))
         }
     }
     
-    func downloadFile(fileId: String) async -> DownloadFileEndpoint.ReturnType {
-        return await httpClient.call(endpoint: DownloadFileEndpoint(fileId: fileId))
+    func downloadFile(fileId: String) async throws -> DownloadedFile {
+        let metadataResult = await httpClient.call(endpoint: GetFileMetadata(fileId: fileId))
+        let contentResult = await httpClient.call(endpoint: DownloadFileEndpoint(fileId: fileId))
+        
+        switch (metadataResult, contentResult) {
+        case let (.success(file), .success(data)):
+            return writeFileToCache(metadata: file, content: data)
+        default:
+            throw GoogleDriveClientError.unknownError
+        }
     }
+    
+    func downloadFile(file: FileMetadata) async throws -> DownloadedFile {
+        switch await httpClient.call(endpoint: DownloadFileEndpoint(fileId: file.id)) {
+        case .success(let data):
+            return writeFileToCache(metadata: file, content: data)
+        case .failure(let error):
+            throw GoogleDriveClientError.endpointError(error)
+        }
+    }
+    
+    func downloadFiles(files: [String]) async throws -> [DownloadedFile] {
+        var downloads = [DownloadedFile]()
+        for file in files {
+            let download = try await downloadFile(fileId: file)
+            downloads.append(download)
+        }
+        return downloads
+    }
+    
+    private func writeFileToCache(metadata: FileMetadata, content: Data) -> DownloadedFile {
+        let url = FileManager.default
+            .urls(for: .cachesDirectory, in: .userDomainMask).first!
+            .appendingPathComponent("Droto-TempDowloads")
+            .appendingPathComponent("\(metadata.id)_\(metadata.md5Checksum ?? "")")
+        
+        FileManager.default.createFile(atPath: url.absoluteString, contents: content)
+        
+        return DownloadedFile(file: metadata, path: url)
+    }
+}
+
+enum GoogleDriveClientError: Error {
+    case endpointError(Error)
+    case unknownError
 }
 

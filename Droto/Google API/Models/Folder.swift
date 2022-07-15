@@ -9,5 +9,5 @@ import Foundation
 
 enum Folder {
     case root
-    case file(File)
+    case file(String)
 }

@@ -7,7 +7,7 @@
 3. Get the current local synced files that claim to be in that folder id
 4. Keep any photos that exist from 3 in 2
 5. Delete any that don't exist
-6. Download any new ones
+6. Download updates
 
 ## Syncing one off files
 

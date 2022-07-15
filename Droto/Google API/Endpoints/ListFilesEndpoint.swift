@@ -24,6 +24,6 @@ struct ListFoldersAndImagesEndpoint: Endpoint {
     typealias SuccessData = ListFilesResponse
     
     struct ListFilesResponse: JsonResponseDecodable {
-        let files: [File]
+        let files: [FileMetadata]
     }
 }
