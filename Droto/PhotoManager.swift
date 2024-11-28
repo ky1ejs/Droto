@@ -7,34 +7,40 @@
 
 import Foundation
 import Photos
+import Combine
 
 class PhotoManager {
     typealias PhotoKitLocalId = String
     
-    func add(photos: [DownloadedFile]) async throws -> [PHCloudIdentifier : DownloadedFile] {
-        try await authIfNeeded()
-        
-        var localIdsAndFiles = [PhotoKitLocalId : DownloadedFile]()
-        try await PHPhotoLibrary.shared().performChanges {
-            for photo in photos {
-                let newPhoto = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: photo.path)
-                let photoKitId = newPhoto!.placeholderForCreatedAsset!.localIdentifier
-                localIdsAndFiles[photoKitId] = photo
+    func add(photos: [DownloadedFile]) -> AnyPublisher<[PHCloudIdentifier : DownloadedFile], Error> {
+
+        return Future<[PHCloudIdentifier : DownloadedFile], Error> { [unowned self] in
+            // TODO: this probably needs to happen on the main thread
+            try await self.authIfNeeded()
+
+            var localIdsAndFiles = [PhotoKitLocalId : DownloadedFile]()
+
+            try await PHPhotoLibrary.shared().performChanges {
+                for photo in photos {
+                    let newPhoto = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: photo.path)
+                    let photoKitId = newPhoto!.placeholderForCreatedAsset!.localIdentifier
+                    localIdsAndFiles[photoKitId] = photo
+                }
             }
-        }
-        
-        let cloudIds = PHPhotoLibrary.shared().cloudIdentifierMappings(forLocalIdentifiers: Array(localIdsAndFiles.keys))
-        var cloudIdsAndFiles = [PHCloudIdentifier : DownloadedFile]()
-        for entry in cloudIds {
-            switch entry.value {
-            case .success(let cloudId):
-                cloudIdsAndFiles[cloudId] = localIdsAndFiles[entry.key]
-            case .failure(let error):
-                throw error
+
+            let cloudIds = PHPhotoLibrary.shared().cloudIdentifierMappings(forLocalIdentifiers: Array(localIdsAndFiles.keys))
+            var cloudIdsAndFiles = [PHCloudIdentifier : DownloadedFile]()
+            for entry in cloudIds {
+                switch entry.value {
+                case .success(let cloudId):
+                    cloudIdsAndFiles[cloudId] = localIdsAndFiles[entry.key]
+                case .failure(let error):
+                    throw error
+                }
             }
-        }
-        
-        return cloudIdsAndFiles
+
+            return cloudIdsAndFiles
+        }.eraseToAnyPublisher()
     }
     
     func update(assetsAndNewPhotos: [(PHAsset, DownloadedFile)]) async throws {

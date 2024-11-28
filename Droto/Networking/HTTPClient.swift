@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class HTTPClient {
     private static let session = URLSession.shared
@@ -43,19 +44,35 @@ class HTTPClient {
         
         return response.result
     }
+    
+    func call<E: Endpoint>(endpoint: E) -> AnyPublisher<E.SuccessType, Error> {
+        return type(of: self).session
+            .dataTaskPublisher(for: buildRequest(endpoint: endpoint))
+            .tryMap(handleResponse(endpoint))
+            .tryMap { result throws -> E.SuccessType in
+                switch result.result {
+                case .success(let data): return data
+                case .failure(let error): throw error
+                }
+            }.eraseToAnyPublisher()
+    }
 
     private func internalCall<E: Endpoint>(endpoint: E) async -> CallResult<E.ReturnType> {
-        var data: Data?
-        var response: URLResponse?
-        
         do {
-            let (returnedData, returnedResponse) = try await type(of: self).session.data(for: buildRequest(endpoint: endpoint))
-            data = returnedData
-            response = returnedResponse
+            let (data, response) = try await type(of: self).session.data(for: buildRequest(endpoint: endpoint))
+            return try handleResponse(data, response, endpoint)
         } catch {
             return CallResult(result: .failure(.unknownError), data: nil, response: nil)
         }
-
+    }
+    
+    private func handleResponse<E: Endpoint>(_ endpoint: E) -> (Data, URLResponse) throws -> CallResult<E.ReturnType> {
+        return { [unowned self] data, response in
+            try self.handleResponse(data, response, endpoint)
+        }
+    }
+    
+    private func handleResponse<E: Endpoint>(_ data: Data, _ response: URLResponse, _: E) throws -> CallResult<E.ReturnType> {
         guard let httpResponse = response as? HTTPURLResponse else {
             return CallResult(result: .failure(.unknownError), data: data, response: nil)
         }
@@ -66,13 +83,9 @@ class HTTPClient {
             }
             return CallResult(result: .failure(.unknownError), data: data, response: httpResponse)
         }
-        
-        guard let unwrappedData = data else {
-            return CallResult(result: .failure(.unknownError), data: data, response: httpResponse)
-        }
 
         do {
-            let model = try E.SuccessData.parse(data: unwrappedData)
+            let model = try E.SuccessType.parse(data: data)
             return CallResult(result: .success(model), data: data, response: httpResponse)
         } catch let error as DecodingError {
             print(error)
@@ -83,12 +96,7 @@ class HTTPClient {
     }
     
     private func buildRequest<E: Endpoint>(endpoint: E) -> URLRequest {
-        var request = URLRequest(url: endpoint.url)
-        headers.forEach { key, value in
-            request.addValue(value, forHTTPHeaderField: key)
-        }
-        request.httpMethod = endpoint.method.rawValue
-        return request
+        endpoint.buildRequest(headers: headers)
     }
     
     struct RetryConfig {

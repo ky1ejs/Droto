@@ -8,6 +8,7 @@
 import Foundation
 import Photos
 import Supabase
+import Combine
 
 class SyncManager {
     typealias GoogleFileID = String
@@ -86,23 +87,40 @@ class SyncManager {
         return Operations(update: update, delete: delete, create: create)
     }
     
-    private func create(_ files: [FileMetadata], in googleFolderDriveId: String) async throws {
-        // download
-        let downloadedPhotos = try await driveClient.downloadFiles(files: files.map { $0.id })
-        // add to library
-        let cloudIdsAndFiles = try await photoManager.add(photos: downloadedPhotos)
-        
-        // save to DB
-        for entry in cloudIdsAndFiles {
-            // TODO: would be great if we could insert multiple rows in one call
-            try await supabaseClient.create(NewSyncedFile(
-                syncedFolderId: googleFolderDriveId,
-                photosId: "",
-                photosCloudId: entry.key.stringValue,
-                googleDriveId: entry.value.file.id,
-                googleDriveMd5Checksum: entry.value.file.md5Checksum
-            ))
-        }
+    private func create(_ files: [FileMetadata], in googleFolderDriveId: String) -> AnyPublisher<DownloadStatus<Void>, Error> {
+        return driveClient.downloadFiles(files: files.map { $0.id })
+            .map { status -> DownloadStatus<[DownloadedFile]>  in
+                switch status {
+                case .progressMade(let progress):
+                    return .progressMade(progress)
+                case .complete(let downloads):
+                    return .complete(downloads)
+                }
+            }.flatMap { [unowned self] status -> AnyPublisher<DownloadStatus<Void>, Error> in
+                switch status {
+                case .progressMade(let progress):
+                    let pass = PassthroughSubject<DownloadStatus<Void>, Error>()
+                    pass.send(.progressMade(progress))
+                    return pass.eraseToAnyPublisher()
+                case .complete(let files):
+                    return self.photoManager.add(photos: files).flatMap { result -> AnyPublisher<DownloadStatus<Void>, Error> in
+                        return Future { [unowned self] in
+                            for entry in result {
+                                // TODO: would be great if we could insert multiple rows in one call
+                                try await supabaseClient.create(NewSyncedFile(
+                                    syncedFolderId: googleFolderDriveId,
+                                    photosId: "",
+                                    photosCloudId: entry.key.stringValue,
+                                    googleDriveId: entry.value.file.id,
+                                    googleDriveMd5Checksum: entry.value.file.md5Checksum
+                                ))
+                            }
+
+                            return .complete(())
+                        }.eraseToAnyPublisher()
+                    }.eraseToAnyPublisher()
+                }
+            }.eraseToAnyPublisher()
     }
     
     private func update(_ files: [SyncedFile]) async throws {
@@ -137,3 +155,19 @@ class SyncManager {
         return syncedItems[file.id] == nil ? .notDownloaded : .downloaded
     }
 }
+
+extension Future where Failure == Error {
+    convenience init(operation: @escaping () async throws -> Output) {
+        self.init { promise in
+            Task {
+                do {
+                    let output = try await operation()
+                    promise(.success(output))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+    }
+}
+

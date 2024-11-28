@@ -21,7 +21,7 @@ struct ListFoldersAndImagesEndpoint: Endpoint {
         return comps.url!
     }
     
-    typealias SuccessData = ListFilesResponse
+    typealias SuccessType = ListFilesResponse
     
     struct ListFilesResponse: JsonResponseDecodable {
         let files: [FileMetadata]

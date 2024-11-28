@@ -39,7 +39,7 @@ class ListFilesViewController: UITableViewController {
         case .file(let file):
             navigationItem.title = file.name
             navigationItem.rightBarButtonItem = UIBarButtonItem(
-                barButtonSystemItem: .save, target: self, action: #selector(saveAll))
+                barButtonSystemItem: .save, target: self, action: #selector(syncFolder))
         }
     }
     
@@ -118,7 +118,32 @@ class ListFilesViewController: UITableViewController {
             ),animated: true)
     }
     
-    @objc private func saveAll() {
-        
+    @objc private func syncFolder() {
+        guard case .file(let metadata) = folder else {
+            assertionFailure("This should only happen on folders")
+            return
+        }
+
+        let yesAction: (UIAlertAction) -> () = { [unowned self] action in
+            self.present(SyncViewController(folder: metadata), animated: true)
+        }
+        let actionSheet = UIAlertController(title: "Wanna sync?", message: "Would you like to syncronise all photos in this folder with Apple Photos?", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Yes", style: .default, handler: yesAction))
+        actionSheet.addAction(UIAlertAction(title: "No", style: .cancel))
+        self.present(actionSheet, animated: true)
     }
+}
+
+class SyncViewController: UIViewController {
+    init(folder: FileMetadata) {
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class SyncView: UIView {
+    private let progressView = UIProgressView(progressViewStyle: .default)
 }

@@ -25,5 +25,5 @@ struct ExchangeAuthCodeForTokenEndpoint: Endpoint {
     }
     
     let method = HTTPMethod.post
-    typealias SuccessData = GoogleOauth.Credentials
+    typealias SuccessType = GoogleOauth.Credentials
 }

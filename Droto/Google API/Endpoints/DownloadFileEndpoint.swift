@@ -17,7 +17,7 @@ struct DownloadFileEndpoint: Endpoint {
         return comps.url!
     }
     let method = HTTPMethod.get
-    typealias SuccessData = Data
+    typealias SuccessType = Data
 }
 
 enum ParsingError: Error {

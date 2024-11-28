@@ -1,5 +1,5 @@
 //
-//  GetFileMetadata.swift
+//  GetFileMetadataEndpoint.swift
 //  Droto
 //
 //  Created by Kyle Satti on 14/07/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GetFileMetadata: Endpoint {
+struct GetFileMetadataEndpoint: Endpoint {
     let fileId: String
     let method = HTTPMethod.get
 
@@ -19,5 +19,5 @@ struct GetFileMetadata: Endpoint {
         return comps.url!
     }
     
-    typealias SuccessData = FileMetadata
+    typealias SuccessType = FileMetadata
 }

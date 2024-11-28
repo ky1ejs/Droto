@@ -6,14 +6,16 @@
 //
 
 import Foundation
+import Combine
 
 struct GoogleDriveClient {
     private let httpClient: HTTPClient
-    private let googleOauth: GoogleOauth
+    private let authHeaders: [String : String]
 
     init(googleCredentials: GoogleOauth.Credentials, googleOauth: GoogleOauth = GoogleOauth()) {
+        let authHeaders = googleOauth.headersWith(credentials: googleCredentials)
         httpClient = HTTPClient(
-            headers: googleOauth.headersWith(credentials: googleCredentials),
+            headers: authHeaders,
             retryConfig: HTTPClient.RetryConfig(
                 evaluator: { data, response in
                     return response?.status == .unauthorized
@@ -27,7 +29,7 @@ struct GoogleDriveClient {
                     }
                 }, retryCount: 1)
         )
-        self.googleOauth = googleOauth
+        self.authHeaders = authHeaders
     }
 
     func getAbout() async -> AboutEndpoint.ReturnType {
@@ -58,7 +60,7 @@ struct GoogleDriveClient {
     }
     
     func downloadFile(fileId: String) async throws -> DownloadedFile {
-        let metadataResult = await httpClient.call(endpoint: GetFileMetadata(fileId: fileId))
+        let metadataResult = await httpClient.call(endpoint: GetFileMetadataEndpoint(fileId: fileId))
         let contentResult = await httpClient.call(endpoint: DownloadFileEndpoint(fileId: fileId))
         
         switch (metadataResult, contentResult) {
@@ -78,14 +80,27 @@ struct GoogleDriveClient {
         }
     }
     
-    func downloadFiles(files: [String]) async throws -> [DownloadedFile] {
-        var downloads = [DownloadedFile]()
-        for file in files {
-            let download = try await downloadFile(fileId: file)
-            downloads.append(download)
+    func downloadFiles(files: [String]) -> AnyPublisher<DownloadStatus<[DownloadedFile]>, Error> {
+        let requests = files.map { file -> TwinDownloadTask<GetFileMetadataEndpoint.SuccessType> in
+                let metadataPublisher = httpClient.call(endpoint: GetFileMetadataEndpoint(fileId: file))
+                let downloadRequest = DownloadFileEndpoint(fileId: file).buildRequest(headers: authHeaders)
+                let downloadPublisher = DownloadResultPublisher(request: downloadRequest).eraseToAnyPublisher()
+                
+                return TwinDownloadTask(
+                    request: metadataPublisher,
+                    download: downloadPublisher
+                )
+            }   
+            
+            return Downloader<GetFileMetadataEndpoint.SuccessType>(requests)
+                .map { status -> DownloadStatus<[DownloadedFile]> in
+                    switch status {
+                    case .progressMade(let progress): return .progressMade(progress)
+                    case .complete(let data):
+                        return .complete(data.map { DownloadedFile(file: $0.request, path: $0.download)})
+                    }
+                }.eraseToAnyPublisher()
         }
-        return downloads
-    }
     
     private func writeFileToCache(metadata: FileMetadata, content: Data) throws -> DownloadedFile {
         let url = FileManager.default

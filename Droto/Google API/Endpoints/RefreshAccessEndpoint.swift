@@ -21,7 +21,7 @@ struct RefreshTokenEndpoint: Endpoint {
         ]
         return comps.url!
     }
-    typealias SuccessData = RefreshTokenResponse
+    typealias SuccessType = RefreshTokenResponse
     
     struct RefreshTokenResponse: JsonResponseDecodable {
         let accessToken: String

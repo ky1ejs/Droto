@@ -10,5 +10,5 @@ import Foundation
 struct AboutEndpoint: Endpoint {
     var url: URL { return URL(string: "https://www.googleapis.com/drive/v2/about")! }
     let method = HTTPMethod.get
-    typealias SuccessData = About
+    typealias SuccessType = About
 }

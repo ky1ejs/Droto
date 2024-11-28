@@ -10,8 +10,20 @@ import Foundation
 protocol Endpoint {
     var url: URL { get }
     var method: HTTPMethod { get }
-    associatedtype SuccessData: URLResponseDecodable
-    typealias ReturnType = Result<SuccessData, HTTPClient.HTTPClientError>
+    associatedtype SuccessType: URLResponseDecodable
+    typealias ErrorType = HTTPClient.HTTPClientError
+    typealias ReturnType = Result<SuccessType, ErrorType>
+}
+
+extension Endpoint {
+    func buildRequest(headers: [String : String]) -> URLRequest {
+        var request = URLRequest(url: url)
+        headers.forEach { key, value in
+            request.addValue(value, forHTTPHeaderField: key)
+        }
+        request.httpMethod = method.rawValue
+        return request
+    }
 }
 
 protocol URLResponseDecodable {
